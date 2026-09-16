@@ -1,4 +1,4 @@
-from intertools import permutations
+from itertools import permutations
 
 def ler_mundo(arquivo: str) -> list:
 	"""
@@ -32,6 +32,20 @@ def ler_mundo(arquivo: str) -> list:
 	pass
 
 def obter_percurso(mundo: list) -> str:
+	"""
+    Obtém o menor percurso que o drone deve realizar para entregar as comidas.
+
+    Parâmetros:
+        mundo: uma lista de tuplas que representam pontos e que seguem o formato (nome, x, y), 
+        em que nome indica o rótulo do ponto, seja ele de retorno (R) ou de entrega (A, B, C, D, E, F... menos o R), 
+        x é o valor inteiro da coordenada horizontal do ponto e y o da coordenada vertical.
+
+    Retorno:
+        Uma string (por exemplo, "A D C B") que indica a sequência de pontos a ser percorrida pelo drone.
+
+        E, em caso de erro na execução da função, uma string vazia.
+    """
+	
     try:
         origem = None
         entregas = []
