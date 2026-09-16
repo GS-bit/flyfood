@@ -1,3 +1,5 @@
+from itertools import permutations
+
 def ler_mundo(arquivo: str) -> list:
 	"""
 	Lê um arquivo contendo as coordenadas dos pontos de entrega de comida e do ponto de retorno do drone.
@@ -31,17 +33,63 @@ def ler_mundo(arquivo: str) -> list:
 
 def obter_percurso(mundo: list) -> str:
 	"""
-	Obtém o menor percurso que o drone deve realizar para entregar as comidas.
+    Obtém o menor percurso que o drone deve realizar para entregar as comidas.
 
-	Parâmetros:
-		mundo: uma lista de tuplas que representam pontos e que seguem o formato (nome, x, y), 
-		em que nome indica o rótulo do ponto, seja ele de retorno (R) ou de entrega (A, B, C, D, E, F... menos o R), 
-		x é o valor inteiro da coordenada horizontal do ponto e y o da coordenada vertical.
+    Parâmetros:
+        mundo: uma lista de tuplas que representam pontos e que seguem o formato (nome, x, y), 
+        em que nome indica o rótulo do ponto, seja ele de retorno (R) ou de entrega (A, B, C, D, E, F... menos o R), 
+        x é o valor inteiro da coordenada horizontal do ponto e y o da coordenada vertical.
 
-	Retorno:
-		Uma string (por exemplo, "A D C B") que indica a sequência de pontos a ser percorrida pelo drone.
+    Retorno:
+        Uma string (por exemplo, "A D C B") que indica a sequência de pontos a ser percorrida pelo drone.
 
-		E, em caso de erro na execução da função, uma string vazia.
-	"""
+        E, em caso de erro na execução da função, uma string vazia.
+    """
+	
+    try:
+        origem = None
+        entregas = []
 
-	pass
+        for ponto in mundo:
+            nome, x, y = ponto
+
+            if nome == "R":
+                origem = ponto
+            else:
+                entregas.append(ponto)
+
+        if origem is None:
+            return ""
+
+        if len(entregas) == 0:
+            return ""
+
+        menor_distancia = float("inf")
+        melhor_percurso = None
+
+        for percurso in permutations(entregas):
+
+            distancia_total = 0
+            ponto_atual = origem
+
+            for ponto in percurso:
+                distancia_total += (
+                    abs(ponto_atual[1] - ponto[1])
+                    + abs(ponto_atual[2] - ponto[2])
+                )
+
+                ponto_atual = ponto
+
+            distancia_total += (
+                abs(ponto_atual[1] - origem[1])
+                + abs(ponto_atual[2] - origem[2])
+            )
+
+            if distancia_total < menor_distancia:
+                menor_distancia = distancia_total
+                melhor_percurso = percurso
+
+        return " ".join(ponto[0] for ponto in melhor_percurso)
+
+    except Exception:
+        return ""
