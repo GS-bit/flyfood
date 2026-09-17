@@ -59,9 +59,6 @@ def ler_mundo(arquivo: str) -> list:
 
     except Exception:
         return []
-                         
-                        
-    pass
 
 def obter_percurso(mundo: list) -> str:
     """
@@ -125,6 +122,3 @@ def obter_percurso(mundo: list) -> str:
 
     except Exception:
         return ""
-
-#resultado = ler_mundo("teste.txt")
-#print(resultado)
