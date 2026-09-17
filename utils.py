@@ -33,7 +33,6 @@ def ler_mundo(arquivo: str) -> list:
     try:
         with open(arquivo, "r") as f:
             linhas = f.readlines()
-            print(linhas)
 
             if len(linhas) > 0:
                 cabecalho = linhas[0]
@@ -127,5 +126,5 @@ def obter_percurso(mundo: list) -> str:
     except Exception:
         return ""
 
-resultado = ler_mundo("mundo.txt")
-print(resultado)
+#resultado = ler_mundo("teste.txt")
+#print(resultado)

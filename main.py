@@ -11,6 +11,8 @@ Período 2026.2
 
 """
 
+from utils import ler_mundo, obter_percurso
+
 def main():
 	caminho_mundo = input("Informe a localização do arquivo com os pontos de entrega e o ponto de retorno: ")
 	
