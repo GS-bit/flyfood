@@ -60,7 +60,7 @@ def ler_mundo(arquivo: str) -> list:
     except Exception:
         return []
 
-def obter_percurso(mundo: list) -> str:
+def obter_percurso(mundo: list) -> tuple:
     """
     Obtém o menor percurso que o drone deve realizar para entregar as comidas.
 
@@ -70,7 +70,8 @@ def obter_percurso(mundo: list) -> str:
         x é o valor inteiro da coordenada horizontal do ponto e y o da coordenada vertical.
 
     Retorno:
-        Uma string (por exemplo, "A D C B") que indica a sequência de pontos a ser percorrida pelo drone.
+        Uma tupla cujo primeiro elemento é uma string (por exemplo, "A D C B") que indica a sequência de pontos 
+	a ser percorrida pelo drone e cujo segundo elemento é a distância desse percurso.
 
         E, em caso de erro na execução da função, uma string vazia.
     """
@@ -118,7 +119,9 @@ def obter_percurso(mundo: list) -> str:
                 menor_distancia = distancia_total
                 melhor_percurso = percurso
 
-        return " ".join(ponto[0] for ponto in melhor_percurso)
+        resultado = (" ".join(ponto[0] for ponto in melhor_percurso), menor_distancia)
+
+        return resultado
 
     except Exception:
         return ""

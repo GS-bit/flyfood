@@ -22,7 +22,9 @@ def main():
 		percurso = obter_percurso(mundo)
 
 		if percurso:
-			print(percurso)
+			print(f"Rota a ser percorrida: {percurso[0]}")
+
+			print(f"Distância necessária: {percurso[1]}")
 		else:
 			print("Falha ao obter o percurso do drone!")
 	else:
